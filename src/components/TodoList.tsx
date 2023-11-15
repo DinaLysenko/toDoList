@@ -1,16 +1,19 @@
 import React from 'react';
 import {S} from './TodoList-Styles'
+import {FilterType} from "../App";
 
 type TodolistPropsType = {
     tasks: TasksPropsType[]
     title: string
+    removeTasks: (taskId:number)=>void
+    changeFilter: (nameButton:FilterType)=>void
 }
 export type TasksPropsType = {
     id: number
     title: string
     isDone: boolean
 }
-export const TodoList: React.FC<TodolistPropsType> = ({tasks, title}) => {
+export const TodoList: React.FC<TodolistPropsType> = ({tasks, title, removeTasks, changeFilter}) => {
     return (
         <S.TodoList>
             <h3>{title}</h3>
@@ -19,14 +22,18 @@ export const TodoList: React.FC<TodolistPropsType> = ({tasks, title}) => {
                 <button>+</button>
             </div>
             <ul>
-                <li  key={tasks[0].id}><input type='checkbox' checked={tasks[0].isDone}/> <span>{tasks[0].title}</span></li>
-                <li key={tasks[1].id}><input type='checkbox' checked={tasks[1].isDone}/> <span>{tasks[1].title}</span></li>
-                <li key={tasks[2].id}><input type='checkbox' checked={tasks[2].isDone}/> <span>{tasks[2].title}</span></li>
+                {tasks.map(t => {
+                        return <li key={t.id}><input type='checkbox' checked={t.isDone}/>
+                            <span>{t.title}</span>
+                            <button onClick={()=>removeTasks(t.id)}>✖️</button>
+                        </li>
+                    }
+                )}
             </ul>
             <div>
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
+                <button onClick={()=>changeFilter('all')}>All</button>
+                <button onClick={()=>changeFilter('active')}>Active</button>
+                <button onClick={()=>changeFilter('completed')}>Completed</button>
             </div>
         </S.TodoList>
     );
