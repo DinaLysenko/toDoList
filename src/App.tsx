@@ -35,6 +35,13 @@ const changeFilter=(nameButton:FilterType)=>{
         tasks = tasks.filter(t => t.id !== taskId)
         setTasks(tasks)
     }
+    const changeTaskStatus=(taskId:string, isDone: boolean)=>{
+        const task = tasks.find(t=> t.id === taskId)
+        if(task){
+            task.isDone=isDone
+        }
+        setTasks([...tasks])
+    }
 
     return (
         <div className="App">
@@ -45,6 +52,8 @@ const changeFilter=(nameButton:FilterType)=>{
                       addTask={addTask}
                       newTitle={newTitle}
                       setNewTitle={setNewTitle}
+                      changeTaskStatus={changeTaskStatus}
+                      filter={filter}
             />
         </div>
     );

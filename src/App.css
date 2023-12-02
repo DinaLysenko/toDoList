@@ -8,3 +8,19 @@
     margin-right: 50px;
 }
 
+.error {
+    border: red 1px solid;
+}
+
+.error-message {
+    color: red;
+}
+
+.active-filter {
+    background-color: #701c9a;
+    border: 1px solid #701c9a;
+    color: white;
+}
+.is-done {
+    opacity: 0.5;
+}
