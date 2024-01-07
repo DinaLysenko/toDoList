@@ -6,7 +6,7 @@ import {AddItemForm} from "./component/AddItemForm";
 import {ButtonAppBar} from "./component/ButtonAppBar";
 import {Container, Grid, Paper} from "@mui/material";
 
-type TodolistsType = {
+export type TodolistsType = {
     id: string
     title: string
     filter: FilterValuesType
